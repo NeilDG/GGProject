@@ -1,0 +1,131 @@
+{
+    "win_count": 0,
+    "board_positions": [
+        {
+            "pieceID": 0,
+            "pieceType": 0,
+            "row": 1,
+            "column": 4
+        },
+        {
+            "pieceID": 990,
+            "pieceType": 1,
+            "row": 2,
+            "column": 0
+        },
+        {
+            "pieceID": 991,
+            "pieceType": 1,
+            "row": 2,
+            "column": 2
+        },
+        {
+            "pieceID": 992,
+            "pieceType": 1,
+            "row": 2,
+            "column": 6
+        },
+        {
+            "pieceID": 993,
+            "pieceType": 1,
+            "row": 2,
+            "column": 8
+        },
+        {
+            "pieceID": 994,
+            "pieceType": 1,
+            "row": 0,
+            "column": 1
+        },
+        {
+            "pieceID": 995,
+            "pieceType": 1,
+            "row": 0,
+            "column": 7
+        },
+        {
+            "pieceID": 2,
+            "pieceType": 2,
+            "row": 0,
+            "column": 3
+        },
+        {
+            "pieceID": 3,
+            "pieceType": 3,
+            "row": 0,
+            "column": 5
+        },
+        {
+            "pieceID": 5,
+            "pieceType": 5,
+            "row": 1,
+            "column": 2
+        },
+        {
+            "pieceID": 4,
+            "pieceType": 4,
+            "row": 1,
+            "column": 0
+        },
+        {
+            "pieceID": 7,
+            "pieceType": 7,
+            "row": 1,
+            "column": 6
+        },
+        {
+            "pieceID": 6,
+            "pieceType": 6,
+            "row": 1,
+            "column": 8
+        },
+        {
+            "pieceID": 8,
+            "pieceType": 8,
+            "row": 1,
+            "column": 5
+        },
+        {
+            "pieceID": 9,
+            "pieceType": 9,
+            "row": 1,
+            "column": 3
+        },
+        {
+            "pieceID": 10,
+            "pieceType": 10,
+            "row": 1,
+            "column": 7
+        },
+        {
+            "pieceID": 13,
+            "pieceType": 13,
+            "row": 2,
+            "column": 4
+        },
+        {
+            "pieceID": 880,
+            "pieceType": 14,
+            "row": 2,
+            "column": 7
+        },
+        {
+            "pieceID": 881,
+            "pieceType": 14,
+            "row": 2,
+            "column": 1
+        },
+        {
+            "pieceID": 12,
+            "pieceType": 12,
+            "row": 2,
+            "column": 3
+        },
+        {
+            "pieceID": 11,
+            "pieceType": 11,
+            "row": 2,
+            "column": 5
+        }
+    ]
+}

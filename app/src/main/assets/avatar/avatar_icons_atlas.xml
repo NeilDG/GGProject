@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texture version="1" file="avatar_icons_atlas.png" type="bitmap" width="1024" height="512" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+    <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
+    <!-- $TexturePacker:SmartUpdate:d9f33d03c2c1a89e034c93ff702d302e:f46f405ab03f92fb5542bf4c28521a44:e3387811bddce9599accedd0a472f193$ -->
+    <textureregion id="0" src="abaddon.png" x="2" y="2" width="256" height="144" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="256" srcheight="144"/>
+    <textureregion id="1" src="bane.png" x="260" y="2" width="256" height="144" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="256" srcheight="144"/>
+    <textureregion id="2" src="earthshaker.png" x="518" y="2" width="256" height="144" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="256" srcheight="144"/>
+    <textureregion id="3" src="enchantress.png" x="2" y="148" width="256" height="144" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="256" srcheight="144"/>
+    <textureregion id="4" src="phantom_assassin.png" x="260" y="148" width="256" height="144" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="256" srcheight="144"/>
+    <textureregion id="5" src="rubick.png" x="518" y="148" width="256" height="144" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="256" srcheight="144"/>
+    <textureregion id="6" src="shadow_shaman.png" x="2" y="294" width="256" height="144" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="256" srcheight="144"/>
+</texture>

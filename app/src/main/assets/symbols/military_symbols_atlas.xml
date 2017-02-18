@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texture version="1" file="military_symbols_atlas.png" type="bitmap" width="512" height="512" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+    <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
+    <!-- $TexturePacker:SmartUpdate:a36849bd998879a52853c334716eb58d:e16029f9787a1fdbb08ea451b2dbbdaa:3fc8904c2b4ef423b05426be09a9e4d8$ -->
+    <textureregion id="0" src="1_star_general.png" x="2" y="2" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="1" src="2_star_general.png" x="117" y="2" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="2" src="2nd_lieutenant.png" x="232" y="2" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="3" src="3_star_general.png" x="347" y="2" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="4" src="4_star_general.png" x="2" y="77" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="5" src="5_star_general.png" x="117" y="77" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="6" src="black_cell.png" x="232" y="77" width="133" height="132" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="133" srcheight="132"/>
+    <textureregion id="7" src="captain.png" x="367" y="77" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="8" src="colonel.png" x="2" y="211" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="9" src="flag.png" x="117" y="211" width="118" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="118" srcheight="73"/>
+    <textureregion id="10" src="lieutenant.png" x="237" y="211" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="11" src="lt_colonel.png" x="352" y="211" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="12" src="major.png" x="2" y="286" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="13" src="private.png" x="117" y="286" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="14" src="sergeant.png" x="232" y="286" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="15" src="spy.png" x="347" y="286" width="118" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="118" srcheight="73"/>
+    <textureregion id="16" src="unknown.png" x="2" y="361" width="113" height="73" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="113" srcheight="73"/>
+    <textureregion id="17" src="white_cell.png" x="117" y="361" width="133" height="132" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="133" srcheight="132"/>
+</texture>

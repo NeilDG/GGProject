@@ -1,0 +1,14 @@
+[
+	{
+		"id" : "military_symbols_atlas",
+		"path": "symbols/"
+	},
+	{
+		"id" : "avatar_icons_atlas",
+		"path": "avatar/"
+	},
+	{
+		"id" : "arrows_atlas",
+		"path": "ui/"
+	}
+]

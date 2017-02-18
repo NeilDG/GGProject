@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texture version="1" file="arrows_atlas.png" type="bitmap" width="512" height="256" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+    <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
+    <!-- $TexturePacker:SmartUpdate:2ed858b5645a4a8751fc5a24ebcb954d:651f878877036a957feea1f1e11da5ca:f5124997e5ff578fd82fb4cee325de31$ -->
+    <textureregion id="0" src="left_arrow.png" x="2" y="2" width="136" height="209" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="136" srcheight="209"/>
+    <textureregion id="1" src="right_arrow.png" x="140" y="2" width="136" height="209" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="136" srcheight="209"/>
+</texture>
