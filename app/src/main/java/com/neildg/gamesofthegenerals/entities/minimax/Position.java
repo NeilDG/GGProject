@@ -25,11 +25,10 @@ public class Position {
 	private byte pieceType;
 	private int row;
 	private int column;
-	
+	private int playerIndex;		//the player who should make the move possible for this position to be reached. 0 for player one. 1 for player two
+
 	private boolean willDuel = false; //marks this piece for dueling, meaning that its position has another piece (which is also marked for dueling)
 	private float pieceValue = 0.0f;
-	
-	private int playerIndex;		//the player who should make the move possible for this position to be reached. 0 for player one. 1 for player two
 	
 	public Position(BoardPiece boardPiece, Player ownedPlayer) {
 		super();

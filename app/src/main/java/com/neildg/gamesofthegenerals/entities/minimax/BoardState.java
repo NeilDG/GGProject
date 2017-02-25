@@ -27,13 +27,11 @@ public class BoardState extends TreeNode {
 	
 	private ArrayList<Position> playerOnePositions;
 	private ArrayList<Position> playerTwoPositions;
-	
-	private Position movedPosition;
+
 	private Player whoseTurnToMove;
 	
 	private ArrayList<Double> evalScoreList = new ArrayList<Double>();
-	
-	private float monteCarloScore = 0.0f;
+
 	private int winCount = 0;
 	
 	public BoardState() {
@@ -79,17 +77,6 @@ public class BoardState extends TreeNode {
 	//assigns the corresponding player who should make the move on this board state
 	public void assignWhoseTurnToMove(Player player) {
 		this.whoseTurnToMove = player;
-	}
-	
-	public void setMovedPosition(Position position) {
-		if(movedPosition != null) {
-			Log.v(TAG, "OH NOES! Adding a duplicate moved position! Position conflict: " +position.getPieceID());
-		}
-		this.movedPosition = position;
-	}
-	
-	public Position getMovedPosition() {
-		return this.movedPosition;
 	}
 	
 	//duplicates the positions. This is used for copying of states to a new state

@@ -40,14 +40,13 @@ public class BoardEvaluator {
 		float computerScore = 0.0f;
 		for(int  i = 0; i < this.boardState.getPositionSize(computer); i++) {
 			Position position = this.boardState.getPositionAt(computer, i);
-			float positionScore = /*this.computeOffensiveness(position, human) +*/ this.computeOpenness(position, human) - this.computeDefensiveness(position, human);
+			float positionScore = this.computeOffensiveness(position, human) + this.computeOpenness(position, human) - this.computeDefensiveness(position, human);
 			computerScore += positionScore;
 		}
 		
 		if(this.isFlagAtRisk(computer, human)) {
 			computerScore = -WIN_LOSS_VALUE;
 			Log.v(TAG, "Computer Flag at risk!");
-			
 		}
 		//computerScore -= /*this.evaluateFlag(computer, human) + this.evaluatePossibleFlagForward(computer, human) + */this.evaluateFlagRisk(computer, human);
 		
@@ -98,7 +97,7 @@ public class BoardEvaluator {
 			numAdjacentPieces++;
 		}
 		
-		float defensiveScore = /*computingPos.getPieceValue() - */(DEFENSE_DEDUCTION * numAdjacentPieces);
+		float defensiveScore = computingPos.getPieceValue() - (DEFENSE_DEDUCTION * numAdjacentPieces);
 		
 		return defensiveScore;
 	}
