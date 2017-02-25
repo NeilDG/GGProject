@@ -16,6 +16,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.util.color.Color;
 
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.util.Log;
 
@@ -32,7 +33,11 @@ import com.neildg.gamesofthegenerals.entities.board.BoardManager;
 import com.neildg.gamesofthegenerals.entities.game.GameStateManager;
 import com.neildg.gamesofthegenerals.entities.game.TurnManager;
 import com.neildg.gamesofthegenerals.entities.game.GameStateManager.GameMode;
+import com.neildg.gamesofthegenerals.entities.minimax.BoardState;
+import com.neildg.gamesofthegenerals.entities.minimax.MonteCarloSearch;
 import com.neildg.gamesofthegenerals.entities.multiplayer.SocketManager;
+import com.neildg.gamesofthegenerals.entities.openings.OpeningMovesLibrary;
+import com.neildg.gamesofthegenerals.entities.openings.OpeningMovesSaver;
 import com.neildg.gamesofthegenerals.entities.piececontroller.PlayerObserver;
 import com.neildg.gamesofthegenerals.layout.killedpieces.KilledPieceDisplay;
 import com.neildg.gamesofthegenerals.layout.prompts.ChangeTurnUI;
@@ -88,6 +93,29 @@ public class GameScene extends AbstractScene implements ConfirmListener  {
 		else if(GameStateManager.getInstance().getGameMode() == GameMode.VERSUS_COMPUTER){
 			this.boardCreator.populateEnemyPieces();
 			TurnManager.getInstance().hideOpponentPieces();
+		}
+		else if(GameStateManager.getInstance().getGameMode() == GameMode.COMPUTER_VERSUS_COMPUTER) {
+
+			//QQQQQ just load a random board state
+			BoardState boardState = OpeningMovesLibrary.getInstance().getRandomBoardState();
+			this.boardCreator.populatePlayerOnePiece(boardState);
+			OpeningMovesSaver openingMovesSaver = new OpeningMovesSaver();
+			openingMovesSaver.saveBoardLayoutToExternal();
+			//end qqqq
+
+			this.boardCreator.populateEnemyPieces();
+			TurnManager.getInstance().hideOpponentPieces();
+
+			//monte carlo search
+			Activity activity = (Activity) EngineCore.getInstance().getContext();
+			activity.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					MonteCarloSearch mcTask = new MonteCarloSearch();
+					mcTask.setAssignedPlayer(PlayerObserver.getInstance().getActivePlayer());
+					mcTask.execute();
+				}
+			});
 		}
 		
 		this.boardCreator.setBoardPosition(ResolutionManager.SCENE_WIDTH * 0.148f, ResolutionManager.SCENE_HEIGHT * 0.14f);

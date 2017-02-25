@@ -216,9 +216,7 @@ public class BoardCreator {
 		
 		BoardState openingState = OpeningMovesLibrary.getInstance().findBestBoardState();
 		Player playerTwo = PlayerObserver.getInstance().getPlayerTwo();
-		
-		
-		
+
 		for(int i = 0; i < openingState.getPositionSize(playerTwo); i++) {
 			Position position = openingState.getPositionAt(playerTwo, i);
 			BoardPiece boardPiece = new BoardPiece(0, 0, position.getPieceType(), this.boardContainer);
@@ -228,27 +226,28 @@ public class BoardCreator {
 			playerTwo.addAlivePiece(boardPiece);
 			
 		}
-		
-		//PlayerObserver.getInstance().getPlayerTwo().markAllPiecesAsUnknown(); //QQQQQ placeholder
-		
-		/*int row = 0;
-		int column = 0;
-		for(int pieceType = PieceHierarchy.KIND_OF_PIECES - 1; pieceType >= 0; pieceType--) {
-			BoardPiece boardPiece = new BoardPiece(0,0, pieceType, this.boardContainer);
+
+		PlayerObserver.getInstance().getPlayerTwo().addPieceIDs();
+	}
+
+	public void populatePlayerOnePiece(BoardState boardState) {
+		Player playerTwo = PlayerObserver.getInstance().getPlayerTwo();
+		Player playerOne = PlayerObserver.getInstance().getPlayerOne();
+
+		Log.d(TAG, "Board state position size. Player one: " +boardState.getPositionSize(playerOne)+ " Player two: " +boardState.getPositionSize(playerTwo));
+
+		for(int i = 0; i < boardState.getPositionSize(playerTwo); i++) {
+			Position position = boardState.getPositionAt(playerTwo, i);
+			BoardPiece boardPiece = new BoardPiece(0, 0, position.getPieceType(), this.boardContainer);
 			this.assignedScene.registerTouchArea(boardPiece);
 			boardPiece.addToBoard();
-			boardPiece.placePieceToCell(this.getBoardAt(row, column));
-			playerTwo.addAlivePiece(boardPiece);
-			column++;
-			
-			if(column == BOARD_COLUMNS) {
-				column = 0;
-				row++;
-			}
-			
-		}*/
-		
-		PlayerObserver.getInstance().getPlayerTwo().addPieceIDs();
+			//get opposite side
+			boardPiece.placePieceToCell(this.getBoardAt(BoardCreator.BOARD_ROWS - position.getRow() - 1, BoardCreator.BOARD_COLUMNS - position.getColumn() - 1));
+			playerOne.addAlivePiece(boardPiece);
+		}
+
+
+		PlayerObserver.getInstance().getPlayerOne().addPieceIDs();
 	}
 	
 	public void setBoardPosition(float x, float y) {

@@ -97,8 +97,11 @@ public class MainMenuScene extends MenuScene implements IBaseScene, IOnMenuItemC
         
         IMenuItem playWithBotsItem = new ScaleMenuItemDecorator(new TextMenuItem(2, font, "Play Against Computer", engine.getVertexBufferObjectManager()), 1.3f, 1.0f);
         this.addMenuItem(playWithBotsItem);
+
+		IMenuItem watchComputerItem = new ScaleMenuItemDecorator(new TextMenuItem(3, font, "Computer Against Computer", engine.getVertexBufferObjectManager()), 1.3f, 1.0f);
+		this.addMenuItem(watchComputerItem);
         
-        IMenuItem quitItem = new ScaleMenuItemDecorator(new TextMenuItem(3, font, "Quit", engine.getVertexBufferObjectManager()), 1.3f, 1.0f);
+        IMenuItem quitItem = new ScaleMenuItemDecorator(new TextMenuItem(4, font, "Quit", engine.getVertexBufferObjectManager()), 1.3f, 1.0f);
         this.addMenuItem(quitItem);
         
         this.buildAnimations();
@@ -175,7 +178,12 @@ public class MainMenuScene extends MenuScene implements IBaseScene, IOnMenuItemC
 	        	GameStateManager.getInstance().setGameMode(GameMode.VERSUS_COMPUTER);
 	        	SceneManager.getInstance().loadScene(SceneList.PIECE_PLACEMENT_SCENE);
 	            return true;
-	        case 3:
+			case 3:
+				//computer vs computer
+				GameStateManager.getInstance().setGameMode(GameMode.COMPUTER_VERSUS_COMPUTER);
+				SceneManager.getInstance().loadScene(SceneList.GAME_SCENE);
+				return true;
+	        case 4:
 	        	//quit application
 	        	runningActivity.runOnUiThread(new Runnable() {
 					@Override

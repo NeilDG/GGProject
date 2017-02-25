@@ -23,7 +23,7 @@ public class GameStateManager {
 		VERSUS_COMPUTER,
 		VERSUS_HUMAN_LOCAL,
 		VERSUS_HUMAN_ADHOC,
-		VERSUS_HUMAN_ONLINE
+		COMPUTER_VERSUS_COMPUTER
 	}
 	
 	private GameState gameState;

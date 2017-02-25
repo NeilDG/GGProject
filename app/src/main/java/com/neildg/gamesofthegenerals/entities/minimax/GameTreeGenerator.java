@@ -31,14 +31,8 @@ public class GameTreeGenerator {
 	private final int MAX = 1;
 	
 	private int currentPly;
-	private BoardPiece lastMovedPiece;
 	
 	private GameTree currentGameTree;
-	
-	
-	public void setLastMovedPiece(BoardPiece lastMovedPiece) {
-		this.lastMovedPiece = lastMovedPiece;
-	}
 	
 	//generates the game tree that requires the last moved piece by the player
 	public void generateRootNode() {

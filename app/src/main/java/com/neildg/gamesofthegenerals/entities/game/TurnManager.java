@@ -97,6 +97,7 @@ public class TurnManager {
 		PlayerObserver.getInstance().getActivePlayer().revealAllPieces();
 		PlayerObserver.getInstance().getInactivePlayer().markAllPiecesAsUnknown();
 	}
+
 	
 	//processes proper turn over. If computer, execute search. If player, transfer controls.
 	public void processTurnOver(final BoardPiece boardPiece, final BoardCell targetBoardCell) {
@@ -106,24 +107,33 @@ public class TurnManager {
 			NotificationCenter.getInstance().postNotification(Notifications.ON_FINISHED_PLAYER_TURN_LOCAL, this);
 			Log.v(TAG, "Showing finished turn UI!");
 		}
+
+		else if(GameStateManager.getInstance().getGameMode() == GameMode.COMPUTER_VERSUS_COMPUTER) {
+			Log.e(TAG, "Computer's move! Thinking");
+			//monte carlo search
+			Activity activity = (Activity) EngineCore.getInstance().getContext();
+			activity.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					MonteCarloSearch mcTask = new MonteCarloSearch();
+					mcTask.setAssignedPlayer(PlayerObserver.getInstance().getActivePlayer());
+					mcTask.execute();
+				}
+			});
+		}
 		
 		else if(PlayerObserver.getInstance().getActivePlayer() == PlayerObserver.getInstance().getPlayerTwo()) {
 			
 			
 			if(GameStateManager.getInstance().getGameMode() == GameMode.VERSUS_COMPUTER) {
 				Log.e(TAG, "Computer's move! Thinking");
-				//find the best move by executing alpha-beta search
-				/*AlphaBetaSearch aBTask = new AlphaBetaSearch();
-				aBTask.assignLastMovedPiece(boardPiece);
-				aBTask.execute();*/
-				
 				//monte carlo search
 				Activity activity = (Activity) EngineCore.getInstance().getContext();
 				activity.runOnUiThread(new Runnable() {
 				    @Override
 				    public void run() {
 				    	MonteCarloSearch mcTask = new MonteCarloSearch();
-						mcTask.assignLastMovedPiece(boardPiece);
+						mcTask.setAssignedPlayer(PlayerObserver.getInstance().getActivePlayer());
 						mcTask.execute();
 				    }
 				});

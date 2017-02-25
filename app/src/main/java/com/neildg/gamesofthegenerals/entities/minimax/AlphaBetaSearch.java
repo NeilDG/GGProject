@@ -42,11 +42,6 @@ public class AlphaBetaSearch extends AsyncTask<Object, Integer, Position>{
 		this.beta = Float.POSITIVE_INFINITY;
 	}
 	
-	//assigns the last moved piece by the player, which will create the root node.
-	public void assignLastMovedPiece(BoardPiece lastMovedPiece) {
-		this.gameTreeGenerator.setLastMovedPiece(lastMovedPiece);
-	}
-	
 	//called by async task to search for the best move in the game tree.
 	//generates the root node and its branches according to ply depth
 	public void searchGameTree() {

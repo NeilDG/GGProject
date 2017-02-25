@@ -187,7 +187,7 @@ public class PieceSelectionUI extends Entity implements IOnTouchListener, Confir
 		
 		
 		if(GameStateManager.getInstance().getGameMode() == GameMode.VERSUS_COMPUTER) {
-			this.openingSaver.saveBoardLayoutToExternal(); 
+			this.openingSaver.saveBoardLayoutToExternal();
 			GameStateManager.getInstance().reportPiecePlacementDone();
 			SceneManager.getInstance().loadScene(SceneList.GAME_SCENE);
 		}
@@ -348,7 +348,6 @@ public class PieceSelectionUI extends Entity implements IOnTouchListener, Confir
 	}
 
 	public void verifyIfAllPiecesPlaced() {
-		
 		for(int  i = 0; i < this.scrollContent.getChildCount(); i++) {
 			PieceDisplayUI pieceUI = (PieceDisplayUI) this.scrollContent.getChildByIndex(i);
 			if (pieceUI.getCurrentPieceNumber() != 0) {
@@ -360,7 +359,6 @@ public class PieceSelectionUI extends Entity implements IOnTouchListener, Confir
 		
 		//if all pieces are placed, show done button
 		this.doneButton.setVisible(true);
-		//this.saveButton.setVisible(true);
 	}
 
 

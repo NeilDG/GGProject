@@ -34,6 +34,7 @@ public class MonteCarloSearch extends AsyncTask<Object, Integer, Position> {
 	private BoardState bestState;
 	private GameTreeGenerator gameTreeGenerator;
 	private GameTree currentGameTree;
+	private Player assignedPlayer;
 	
 	private int searchTimes = 1000; //this can be tweaked in the future. may depend on AI level
 	
@@ -42,25 +43,25 @@ public class MonteCarloSearch extends AsyncTask<Object, Integer, Position> {
 		
 	}
 	
-	//assigns the last moved piece by the player, which will create the root node.
-		public void assignLastMovedPiece(BoardPiece lastMovedPiece) {
-			this.gameTreeGenerator.setLastMovedPiece(lastMovedPiece);
-		}
+	//assigns the player for performing monte carlo search
+	public void setAssignedPlayer(Player assignedPlayer) {
+		this.assignedPlayer = assignedPlayer;
+	}
 	
 	public void performMonteCarlo() {
 		
-		if(PlayerObserver.getInstance().getActivePlayer() != PlayerObserver.getInstance().getPlayerTwo()) {
+		/*if(PlayerObserver.getInstance().getActivePlayer() != PlayerObserver.getInstance().getPlayerTwo()) {
 			Log.e(TAG, "Player's move detected. Skipping tree search");
 			return;
 		}
-		else{
+		else*/{
 			this.gameTreeGenerator.generateRootNode();
 			this.currentGameTree = this.gameTreeGenerator.getCurrentGameTree();
 			
 			Player playerOne = PlayerObserver.getInstance().getPlayerOne();
 			Player playerTwo = PlayerObserver.getInstance().getPlayerTwo();
 			
-			ArrayList<BoardState> possibleComputerStates = this.gameTreeGenerator.exploreNextMoves(this.currentGameTree.getRoot(), playerTwo);
+			ArrayList<BoardState> possibleComputerStates = this.gameTreeGenerator.exploreNextMoves(this.currentGameTree.getRoot(), this.assignedPlayer);
 			ArrayList<BoardState> selectedComputerStates = new ArrayList<BoardState>();
 			
 			for(int i = 0; i < this.searchTimes; i++) {
@@ -73,24 +74,24 @@ public class MonteCarloSearch extends AsyncTask<Object, Integer, Position> {
 				computerState.addMonteCarloScore(evalScore);
 				
 				//find a random human move against CM
-				/*ArrayList<BoardState> possibleHumanMoves = this.gameTreeGenerator.exploreNextMoves(computerState, playerOne);
+				ArrayList<BoardState> possibleHumanMoves = this.gameTreeGenerator.exploreNextMoves(computerState, playerOne);
 				if(possibleHumanMoves.size() > 0) {
 					BoardState randomHumanMove = this.selectRandomBoardState(possibleHumanMoves);
 					
 					//store resulting board score after performing human moves against computer move
 					randomHumanMove.computeHeuristic();
-					float evalScore = randomHumanMove.getHeuristic();		
+					evalScore = randomHumanMove.getHeuristic();
 					computerState.addMonteCarloScore(evalScore);
 				}
 				else {
 					//human has no pieces left, or flag is captured. we add 999.0f to score
 					computerState.addMonteCarloScore(BoardEvaluator.WIN_LOSS_VALUE);
-				}*/
+				}
 					
-				/*//replace best state if a higher monte carlo score is found
-				if(this.bestState == null || this.bestState.getMonteCarloScore() < computerState.getMonteCarloScore()) {
+				//replace best state if a higher monte carlo score is found
+				if(this.bestState == null || this.bestState.getMeanMonteCarlo() < computerState.getMeanMonteCarlo()) {
 					this.bestState = computerState;
-				}*/
+				}
 			}
 			
 			//we find the best median score among selected computer states
@@ -125,16 +126,15 @@ public class MonteCarloSearch extends AsyncTask<Object, Integer, Position> {
 	@Override
 	protected void onPostExecute(Position bestPosition) {
 		
-		if(PlayerObserver.getInstance().getActivePlayer() != PlayerObserver.getInstance().getPlayerTwo()) {
+		/*if(PlayerObserver.getInstance().getActivePlayer() != PlayerObserver.getInstance().getPlayerTwo()) {
 			return;
-		}
+		}*/
 		
 	   // execution of result of Long time consuming operation
 	   BoardManager.getInstance().applyBoardState(this.bestState);
 	   Log.v(TAG, "Finished monte-carlo execution");
-	   
-	   
-	   NotificationCenter.getInstance().postNotification(Notifications.ON_FINISHED_PLAYER_TURN_COMPUTER, this);
+
+		NotificationCenter.getInstance().postNotification(Notifications.ON_FINISHED_PLAYER_TURN_COMPUTER, this);
 	  }
 
 }

@@ -142,8 +142,10 @@ public class BoardManager {
 		//check if new position is empty
 		if(!this.isNewPositionOccupied(boardCell)) {
 			boardPiece.placePieceToCell(boardCell);
-			PiecePlacementInputHandler.getInstance().reportSuccessfulPlacement(boardPiece);
-			
+
+			if(GameStateManager.getInstance().getGameMode() != GameMode.COMPUTER_VERSUS_COMPUTER) {
+				PiecePlacementInputHandler.getInstance().reportSuccessfulPlacement(boardPiece);
+			}
 
 			//report a successful turn during actual game
 			if(GameStateManager.getInstance().getCurrentState() == GameState.MAIN_GAME) {

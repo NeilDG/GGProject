@@ -204,6 +204,12 @@ public class OpeningMovesLibrary {
 			return bestBoardState;
 		}
 	}
+
+	public BoardState getRandomBoardState() {
+		BoardState boardState = this.selectRandomBoardState(this.openingBoardStates);
+		return boardState;
+	}
+
 	
 	//we assign the last written file path that is stored in the library list. Should the computer wins, this path will be deleted. To filter noisy data
 	public String getLastWrittenFilePath() {

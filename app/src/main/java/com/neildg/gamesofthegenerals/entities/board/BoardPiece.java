@@ -96,10 +96,7 @@ public class BoardPiece extends Sprite {
 	}
 	
 	public void placePieceToCell(IBoardCell boardCell) {
-		
-		float oldX = this.getX();
-		float oldY = this.getY();
-		
+
 		//remove piece from old cell
 		if(this.assignedBoardCell != null) {
 			this.assignedBoardCell.removeAssignedBoardPiece();
