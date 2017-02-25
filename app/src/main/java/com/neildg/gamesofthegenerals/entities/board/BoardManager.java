@@ -86,12 +86,24 @@ public class BoardManager {
 			
 			this.processPiecePlacement(boardPiece, boardCell);
 		}
-		/*Position position = boardState.getMovedPosition();
-		BoardCell boardCell = this.boardCreator.getBoardAt(position.getRow(), position.getColumn());
-		BoardPiece boardPiece = computer.getAlivePieceByID(position.getPieceID());
-		
-		this.processPiecePlacement(boardPiece, boardCell);*/
-		//TurnManager.getInstance().reportSuccessfulTurn();
+	}
+
+	//applies the board state. This represents the move to be done by the computer
+	public void applyBoardStateComputerVComputer(BoardState boardState) {
+		Player computer = PlayerObserver.getInstance().getActivePlayer();
+		//for security, we check active player. This is to make computer vs computer possible
+		//Player computer = PlayerObserver.getInstance().getActivePlayer();
+
+		for(int i = 0; i < boardState.getPositionSize(computer); i++) {
+			Position position = boardState.getPositionAt(computer, i);
+			BoardCell boardCell = this.boardCreator.getBoardAt(position.getRow(), position.getColumn());
+			BoardPiece boardPiece = computer.getAlivePieceByID(position.getPieceID());
+
+			if(boardPiece != null ) {
+				this.processPiecePlacementForTest(boardPiece, boardCell, computer);
+			}
+
+		}
 	}
 	
 	public void updatePiecePosition(BoardPiece boardPiece) {
@@ -135,6 +147,7 @@ public class BoardManager {
 	}
 	
 	public void processPiecePlacement(final BoardPiece boardPiece, BoardCell boardCell) {
+		Log.d(TAG, "Processing piece placement for boardpiece " +boardPiece.getPieceID()+ " owned by " +boardPiece.getPlayerOwner().getPlayerName());
 		Player activePlayer = PlayerObserver.getInstance().getActivePlayer();
 		
 		boardCell.setAlpha(0.76f);
@@ -157,7 +170,7 @@ public class BoardManager {
 			
 			BoardPiece boardPieceOnCell = boardCell.getAssignedBoardPiece();
 			
-			Log.v(TAG, "Board Piece on cell: " +boardPieceOnCell.getPieceType()+ " is Owned? " +activePlayer.isPieceOwned(boardPieceOnCell));
+			Log.d(TAG, "Board Piece on cell. " +boardPieceOnCell.getPieceType()+ " is Owned? " +activePlayer.isPieceOwned(boardPieceOnCell));
 			
 			/*if(GameStateManager.getInstance().getGameMode() == GameMode.VERSUS_HUMAN_ADHOC) {
 				activePlayer = PlayerObserver.getInstance().getPlayerOne(); //since adhoc will always consider the remote as player two
@@ -194,6 +207,59 @@ public class BoardManager {
 			
 		}
 		
+	}
+
+	public void processPiecePlacementForTest(final BoardPiece boardPiece, BoardCell boardCell, Player player) {
+		Log.d(TAG, "Processing piece placement for boardpiece " +boardPiece.getPieceID()+ " owned by " +boardPiece.getPlayerOwner().getPlayerName());
+
+		boardCell.setAlpha(0.76f);
+
+		//check if new position is empty
+		if(!this.isNewPositionOccupied(boardCell)) {
+			boardPiece.placePieceToCell(boardCell);
+
+			if(GameStateManager.getInstance().getGameMode() != GameMode.COMPUTER_VERSUS_COMPUTER) {
+				PiecePlacementInputHandler.getInstance().reportSuccessfulPlacement(boardPiece);
+			}
+
+			//report a successful turn during actual game
+			if(GameStateManager.getInstance().getCurrentState() == GameState.MAIN_GAME) {
+				TurnManager.getInstance().reportSuccessfulTurn();
+				TurnManager.getInstance().processTurnOver(boardPiece, boardCell);
+			}
+		}
+		else {
+
+			BoardPiece boardPieceOnCell = boardCell.getAssignedBoardPiece();
+
+			Log.d(TAG, "Board Piece on cell. " +boardPieceOnCell.getPieceType()+ " is Owned? " +player.isPieceOwned(boardPieceOnCell));
+
+			//check if piece is owned
+			if(player.isPieceOwned(boardPieceOnCell)) {
+				IBoardCell oldBoardCell = boardPiece.getBoardCell();
+				//return to original position if there is such
+				if(oldBoardCell != null) {
+					boardPiece.placePieceToCell(oldBoardCell);
+
+				}
+				//delete board piece if not
+				else {
+					PiecePlacementInputHandler.getInstance().reportFailedPlacement(boardPiece);
+					boardPiece.destroy();
+				}
+			}
+			else {
+				//commence an evaluation of the arbiter
+				BoardPiece[] result = Arbiter.getInstance().evaluatePieces(boardPiece, boardPieceOnCell);
+				if(result != null && result[Arbiter.WINNING_PIECE_INDEX] != null) {
+					result[Arbiter.WINNING_PIECE_INDEX].placePieceToCell(boardCell);
+				}
+			}
+
+			TurnManager.getInstance().reportSuccessfulTurn();
+			TurnManager.getInstance().processTurnOver(boardPiece, boardCell);
+		}
+
 	}
 	
 	

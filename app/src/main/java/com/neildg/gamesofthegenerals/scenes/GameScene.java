@@ -106,7 +106,8 @@ public class GameScene extends AbstractScene implements ConfirmListener  {
 			this.boardCreator.populateEnemyPieces();
 			TurnManager.getInstance().hideOpponentPieces();
 
-			//monte carlo search
+			TurnManager.getInstance().processTurnOver(null, null);
+			/*//monte carlo search
 			Activity activity = (Activity) EngineCore.getInstance().getContext();
 			activity.runOnUiThread(new Runnable() {
 				@Override
@@ -115,7 +116,7 @@ public class GameScene extends AbstractScene implements ConfirmListener  {
 					mcTask.setAssignedPlayer(PlayerObserver.getInstance().getActivePlayer());
 					mcTask.execute();
 				}
-			});
+			});*/
 		}
 		
 		this.boardCreator.setBoardPosition(ResolutionManager.SCENE_WIDTH * 0.148f, ResolutionManager.SCENE_HEIGHT * 0.14f);

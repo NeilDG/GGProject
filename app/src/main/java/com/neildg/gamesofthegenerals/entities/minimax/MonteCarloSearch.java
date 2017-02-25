@@ -11,6 +11,7 @@ import com.neildg.gamesofthegenerals.core.notification.NotificationCenter;
 import com.neildg.gamesofthegenerals.core.notification.Notifications;
 import com.neildg.gamesofthegenerals.entities.board.BoardManager;
 import com.neildg.gamesofthegenerals.entities.board.BoardPiece;
+import com.neildg.gamesofthegenerals.entities.game.GameStateManager;
 import com.neildg.gamesofthegenerals.entities.piececontroller.Player;
 import com.neildg.gamesofthegenerals.entities.piececontroller.PlayerObserver;
 import com.neildg.gamesofthegenerals.entities.stat.Statistics;
@@ -131,9 +132,15 @@ public class MonteCarloSearch extends AsyncTask<Object, Integer, Position> {
 		}*/
 		
 	   // execution of result of Long time consuming operation
-	   BoardManager.getInstance().applyBoardState(this.bestState);
-	   Log.v(TAG, "Finished monte-carlo execution");
 
+		if(GameStateManager.getInstance().getGameMode() == GameStateManager.GameMode.COMPUTER_VERSUS_COMPUTER) {
+			BoardManager.getInstance().applyBoardStateComputerVComputer(this.bestState);
+		}
+		else {
+			BoardManager.getInstance().applyBoardState(this.bestState);
+
+		}
+	   Log.v(TAG, "Finished monte-carlo execution");
 		NotificationCenter.getInstance().postNotification(Notifications.ON_FINISHED_PLAYER_TURN_COMPUTER, this);
 	  }
 

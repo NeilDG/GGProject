@@ -37,7 +37,7 @@ public class Arbiter {
 		
 		BoardPiece[] result = new BoardPiece[2];
 		
-		//Log.d(TAG, "Arbiter evaluate! Attacking: " +attackingPieceType+ " Defending: " +defendingPieceType);
+		Log.d(TAG, "Arbiter evaluate! Attacking: " +attackingPieceType+ " Defending: " +defendingPieceType);
 		
 		if(attackingPieceType == defendingPieceType) {
 			if(attackingPieceType == PieceHierarchy.FLAG && defendingPieceType == PieceHierarchy.FLAG) {

@@ -101,7 +101,7 @@ public class TurnManager {
 	
 	//processes proper turn over. If computer, execute search. If player, transfer controls.
 	public void processTurnOver(final BoardPiece boardPiece, final BoardCell targetBoardCell) {
-		
+		Log.d(TAG, "Process turn over!");
 		if(GameStateManager.getInstance().getGameMode() == GameMode.VERSUS_HUMAN_LOCAL) {
 			BoardManager.getInstance().getBoardCreator().hideBoardContainer();
 			NotificationCenter.getInstance().postNotification(Notifications.ON_FINISHED_PLAYER_TURN_LOCAL, this);
@@ -123,8 +123,7 @@ public class TurnManager {
 		}
 		
 		else if(PlayerObserver.getInstance().getActivePlayer() == PlayerObserver.getInstance().getPlayerTwo()) {
-			
-			
+
 			if(GameStateManager.getInstance().getGameMode() == GameMode.VERSUS_COMPUTER) {
 				Log.e(TAG, "Computer's move! Thinking");
 				//monte carlo search
