@@ -102,8 +102,10 @@ public class BoardManager {
 			if(boardPiece != null ) {
 				this.processPiecePlacementForTest(boardPiece, boardCell, computer);
 			}
-
 		}
+
+		TurnManager.getInstance().reportSuccessfulTurn();
+		TurnManager.getInstance().processTurnOver(null, null);
 	}
 	
 	public void updatePiecePosition(BoardPiece boardPiece) {
@@ -255,9 +257,6 @@ public class BoardManager {
 					result[Arbiter.WINNING_PIECE_INDEX].placePieceToCell(boardCell);
 				}
 			}
-
-			TurnManager.getInstance().reportSuccessfulTurn();
-			TurnManager.getInstance().processTurnOver(boardPiece, boardCell);
 		}
 
 	}
